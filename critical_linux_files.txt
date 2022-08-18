@@ -1,0 +1,23 @@
+/etc/issue - message or SystemID printed before the login prompt
+
+/etc/profile - controls system-wide default variables (export, file creation mask/unmask, terminal types, mail messages)
+
+/proc/version - specifies version of linux kernel
+
+/etc/passwd - all registered users w/ access to the system
+
+/etc/shadow - contains info about system's users' passwords
+
+/root/.bash_history - history of commands for root user
+
+/var/log/dmessage - global system messages, including those logged during system startup
+
+/var/mail/root - all emails for root user
+
+/root/.ssh/id_rsa - private ssh for root/all users on the system
+
+/var/log/apache2/access.log - accessed requests for Apache Webserver
+
+
+Bonus: Windows
+C:\boot.ini - contains boot options for computers w BIOS firmware
