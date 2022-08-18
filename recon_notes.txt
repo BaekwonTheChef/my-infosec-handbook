@@ -1,0 +1,107 @@
+Recon - gathering info on the target, asset, infrastructure, dns, certificate
+
+Recon could include brute forcing directories, credentials, or identifying new/old features
+
+Recon == LEARNING
+
+https://youtu.be/YT5Zl2jW3wg - Ben Sadeghipour "It's the Little Things"
+
+___________________________________
+Automatic Recon - Burp, LazyRecon
+	Burp Intruder, FuzzDB, and PayloadAllTheThings(github) are great tools to gather info
+
+___________________________________
+Manual Recon - googling, searching github for code that may exist on the site/asset/server
+	Google Dorking - crafted google searches to find specific or "hidden" info
+
+searches that include terms like "site:", "inurl:", or "intext:"
+
+github queries involve looking for API keys, secret keys, passwords, etc
+
+App store - great resource for finding new features/functionality
+
+
+___________________________________
+Built-in Recon Tools
+
+whois [domain.com] - pulls domain registrar info
+	Registrar server, registrar URL, registrant/admin/tech contact
+	use "whois" on public facing resources (i.e. job postings)
+
+NSLookup - gathers IPv4 and IPv6 recordds and addresses
+
+dig@[IP Address][Domain] - Domain information groper
+
+
+___________________________________
+Assets in Scope
+
+Download Burp Config File (HackerOne)
+
+Type of App v Type of Bug you can find
+
+Beginner - Business Logic errors, IDORs
+	Don't require too much security knowledge
+	don't overestimate your abilities
+
+If you are hacking on an application, make sure you understand what it does. Be interested in the asset and you're more likely to dig deeper
+
+How difficult is the the impact to prove?
+	financial impact is easiest to prove
+	account modification is also rather easy
+
+___________________________________________
+Learning about the Asset - OWASP 10
+
+What does it do?
+Does it have a database?
+Is this using an API?
+
+Learn business logic ((I'm not there yet, if you're reading this you're better off googling it for the time being))
+
+Try a payload. Is it filtered? What kind of filtering does it have?
+
+Basic SQLi, XSS, Quantity of Resources used during the request
+
+"What does [asset] to when I _______?" is the most important question when doing recon
+
+Learn the flow of the Application (fig. A) ((I drew a lil pic in my notebook, I'll add it to the github later))
+
+Step through the process
+	Add to cart, remove from cart, payment, adjust quantity
+
+How does it work? how can we break it?
+
+
+__________________________________________
+Filling up Burp
+
+Press ALLLLLLLLLLLLLL of the buttons (modify, read, write)
+	userful for finding IDORs
+
+Map high level functions to API endpoints
+
+fuzz for API endpoints
+
+
+___________________________________________
+Prioritizing Endpoints
+
+EPs that look strange/different
+	ex. everything else uses Get or Post but this one uses Put for some reason
+
+Endpoints w large numbers of parameters
+	fuzz
+
+Endpoints that link to logic
+	account changes, pmt, gateways
+	IDORs, CSRF, business logic errors
+
+Develop Hacker Intuation
+
+Watch out for:
+	Forms that do not havce CSRF token
+		- vulnerable to CSRF, chain to XSS
+	APIs that take IDs often contains IDORS
+	UI-only validation checks
+	GraphQL Endpoints
