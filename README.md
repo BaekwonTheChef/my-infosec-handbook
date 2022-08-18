@@ -9,3 +9,9 @@ A few weeks ago, I bought a little pocket notebook to collect and organize my th
 I feel excited thinking about what this repo could become over time, but for now, I will return to my studies.
 
 - The Chef
+
+_______________________________________________________________________________________________________________________________________________________________________
+8/18/22
+Just added a few txt files with the notes I've been accumulating recently.
+
+Added Python, Recon, and Critical Linux Files notes
