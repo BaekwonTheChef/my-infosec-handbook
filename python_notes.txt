@@ -1,0 +1,154 @@
+_____________________
+***** Functions *****
+
+Print() - prints the contents of ( )
+
+len() - returns the length of ( ) as an int
+
+str() - converts ( ) to a string
+
+len(var) = 10
+var[1:9] - returns substring from the 2nd char to the final char
+
+str.lower() - changes the case of the entire string
+	.upper()
+	.capitalize() - capitalizes the first character
+
+str.split(sep) - spits the string based on the "sep" argument from the left (split) or the right (rsplit)
+	.rsplit
+	.splitlines - splits based ont he \n newline char
+
+list = ["my", "list"]
+print(" ".join(list)) -> my list 
+^^^^ joins the contents of the list based on the str object ' '
+
+str.strip() - removes unnecessary characters from a string or list element (ex. leading spaces)
+	.rstrip()
+	.lstrip()
+
+str.find(substring, start, end) - searches a string for a desired substring, returns -1 if not found
+		    (opt) (opt)
+	.count(substring, start, end)
+			  (opt) (opt)
+	.replace(old, new, count) - replace $old with $new, count = # of times to replace
+
+str.index(substring, start, end) - same as find, but works with try / except
+		     (opt) (opt)
+
+str = "{} to {} for work"
+mode = "driving"
+location = "the office" 
+print(str.format(mode, location) 		-> 	driving to the office for work
+
+define a dictionary
+my_methods = {"tool": "algorithms", "goal": "patterns"}
+str = "{data[tool]} try to find {data]goal]} in the dataset"
+print(str.format(data = my_methods)) 		-> 	algorithms try to find patterns in the dataset
+
+f string - formatted string literal
+
+feeling = love
+thing = food
+print(f"I {feeling} {thing}") 			-> 	I love food
+
+_____________________________
+***** String Formatting *****
+
+{variable:type-conversion}		{name!s} - string
+{number:.2f} - float, 2 dec points	{name!r} - printable representation
+e - scientific notation			{name!a} escape non-ASCII characters
+d - digit
+
+print(f"today's date is {date_var:%B %d, %Y) 	-> today's date is August 18, 2022
+				  ^^^^^^^^^^
+				These are placeholders that tell the 
+				system how to format the date, 
+				google the rest if you need them 
+
+f"Price for house in west neighborhood was ${west['price']} on ${west['date']:%m-%d-%Y}."
+
+Templates - from string import Template
+^^^^ imports the Template class from the string module
+
+Template strings use '$' as variable identifiers. To actually use the $ char, use '$$' to escape the variable function
+
+str = Template("I <3 $language")
+str.substitute(language="PHP") 			-> I <3 PHP
+
+Templates only work with external or user provided strings
+
+str.format()/f-strings are always advisable
+- Python 3.6 and beyond
+
+
+_____________________________
+***** Raw Strings/RegEx *****
+			Character Placeholders
+	\d	\s	\w	\D	\W		\S
+       digit   space    word non-digit non-word      non-space
+
+r"string" - raw string
+
+import re - regex module
+
+re.findall(regex, string) - returns each time the raw string is found
+
+re.split(regex, string) - returns list of strings, split not including regex
+
+re.sub(regex, new, str) - replaces regex with new in str
+
+re.search(regex, str)
+
+re.match(regex, str) ((I don't remember the difference between match and search))
+
+\d+ - + denotes one or more iteration of the char immediately to the left
+
+\d{x} - repeats x number of times
+
+\d* - repeats zero or more times
+
+\d? - repeats zero or one time 
+	ex. re.findall(r"colou?r", str) could return all iterations of "color" AND "colour" in str
+
+match https links 	- 	r"https\S+"
+	ex. returns all strings beginning with "https" followed by anything that is NOT a space
+match user mentions 	- 	r"@\w+"
+	ex. returns anything beginnning with "@" followed by words/letters
+match date/time 	- 	r"\d{1,2}\w+\s\w+\s\d{4}\s\d{2}:\d{1,2}"
+	ex. returns something similar to "2nd January 2019 17:38" (1 to 2 digits followed by 1 or more letters '4th', space, 1 or more letter 'July', space, 4 digits '1776', space, 2 digits '04', colon, 1 to 2 digits '20'
+
+.(dot) - match any character
+
+^(carrot) start of the string only
+
+$ - end of string only
+
+|(pipe) - or
+	ex. r"Elephant|elephant"
+
+[] - contains "or" condition within
+	ex. r"[a-zA-Z]+\d"
+
+[^0-9] - not, ex not a digit
+
+re.sub(r"#%$", " ", str)
+	ex. replaces given regex with " "
+
+r"[a-zA-Z0-9!#%\$\.]+@\w+\.com"		-> 	anyletternumberorcharacter@anydomain.com
+	       ___ - \ is used as an escape char in this string because $ and . both have other functions, but we need it to search for those characters rather than use their default functions
+
+
+____________________
+***** Matching *****
+
+Greedy Matching - matches as many chars as possible, returns the longest string
+	Standard Quanitifiers - *, +, ?, {x,y}
+
+Non-Greedy Matching (Lazy) - matches as few characters as needed, returns the shortest match
+	Append ? to the end of quantifiers to make them lazy
+
+() user parentheses to categorie output into groups
+
+r"([A-Za-z]+)\s\w+\s(\d+)\s(\w+)"
+      G1              G2     G3
+|-----------G0------------------|
